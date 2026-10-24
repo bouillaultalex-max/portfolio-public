@@ -1,0 +1,188 @@
+{
+  "name": "demo-b-product",
+  "recordedAt": "2026-10-24T15:10:22.224Z",
+  "jarvisCommit": "fdcd940",
+  "node": "v24.21.0",
+  "shellFunction": "jarvis() { node_modules/.bin/tsx apps/desktop/src/main.ts \"$@\"; };",
+  "briefsDirIsTemporary": true,
+  "steps": [
+    {
+      "cmd": "jarvis project create atelier-velo \"Atelier vélo — réservation\"",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 736,
+      "chunks": [
+        {
+          "t": 711,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 1, mis à jour 2026-10-24T15:10:15.473Z).\n"
+        },
+        {
+          "t": 711,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (0) : (aucune)\nFaits (0) : (aucun)\nHypothèses (0) : (aucune)\nBesoins déclarés, non vérifiés (0) : (aucun)\nDécisions (0) : (aucune)\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project add-source atelier-velo \"Entretien fictif avec un gérant\"",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 749,
+      "chunks": [
+        {
+          "t": 724,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 2, mis à jour 2026-10-24T15:10:16.226Z).\n"
+        },
+        {
+          "t": 724,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (0) : (aucun)\nHypothèses (0) : (aucune)\nBesoins déclarés, non vérifiés (0) : (aucun)\nDécisions (0) : (aucune)\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project add-need atelier-velo \"Réserver une réparation sans appeler\" --source src-1",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 738,
+      "chunks": [
+        {
+          "t": 713,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 3, mis à jour 2026-10-24T15:10:16.961Z).\n"
+        },
+        {
+          "t": 713,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (0) : (aucun)\nHypothèses (0) : (aucune)\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (0) : (aucune)\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project add-fact atelier-velo \"Les appels interrompent les réparations\"",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 734,
+      "chunks": [
+        {
+          "t": 708,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 4, mis à jour 2026-10-24T15:10:17.698Z).\n"
+        },
+        {
+          "t": 708,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (1) : [fact-1] Les appels interrompent les réparations {source non renseignée}\nHypothèses (0) : (aucune)\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (0) : (aucune)\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project add-hypothesis atelier-velo \"Les clients réservent surtout le soir\"",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 742,
+      "chunks": [
+        {
+          "t": 712,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 5, mis à jour 2026-10-24T15:10:18.433Z).\nSources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (1) : [fact-1] Les appels interrompent les réparations {source non renseignée}\nHypothèses (1) : [hyp-1] Les clients réservent surtout le soir {source non renseignée}\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (0) : (aucune)\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project add-decision atelier-velo \"Prototype : réservation en ligne\"",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 782,
+      "chunks": [
+        {
+          "t": 755,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 6, mis à jour 2026-10-24T15:10:19.217Z).\nSources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (1) : [fact-1] Les appels interrompent les réparations {source non renseignée}\nHypothèses (1) : [hyp-1] Les clients réservent surtout le soir {source non renseignée}\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (1) : [dec-1:proposed] Prototype : réservation en ligne {aucune justification enregistrée}\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project justify-decision atelier-velo dec-1 fact-1",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 705,
+      "chunks": [
+        {
+          "t": 677,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 7, mis à jour 2026-10-24T15:10:19.925Z).\n"
+        },
+        {
+          "t": 677,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (1) : [fact-1] Les appels interrompent les réparations {source non renseignée}\nHypothèses (1) : [hyp-1] Les clients réservent surtout le soir {source non renseignée}\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (1) : [dec-1:proposed] Prototype : réservation en ligne {justifiée par : fact-1}\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project validate-decision atelier-velo dec-1",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 756,
+      "chunks": [
+        {
+          "t": 727,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 8, mis à jour 2026-10-24T15:10:20.674Z).\n"
+        },
+        {
+          "t": 727,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (1) : [fact-1] Les appels interrompent les réparations {source non renseignée}\nHypothèses (1) : [hyp-1] Les clients réservent surtout le soir {source non renseignée}\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (1) : [dec-1:validated] Prototype : réservation en ligne {justifiée par : fact-1}\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project justify-decision atelier-velo dec-1 hyp-1; echo \"exit code: $?\"",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 765,
+      "chunks": [
+        {
+          "t": 733,
+          "stream": "stdout",
+          "text": "Erreur [invalid_transition] : Décision « dec-1 » validée : sa justification ne peut plus être modifiée.\n"
+        },
+        {
+          "t": 763,
+          "stream": "stdout",
+          "text": "exit code: 1\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis project show atelier-velo",
+      "input": null,
+      "exitCode": 0,
+      "durationMs": 748,
+      "chunks": [
+        {
+          "t": 719,
+          "stream": "stdout",
+          "text": "Projet « atelier-velo » — Atelier vélo — réservation (révision 8, mis à jour 2026-10-24T15:10:20.674Z).\n"
+        },
+        {
+          "t": 719,
+          "stream": "stdout",
+          "text": "Sources déclarées, non vérifiées (1) : [src-1] Entretien fictif avec un gérant\nFaits (1) : [fact-1] Les appels interrompent les réparations {source non renseignée}\n"
+        },
+        {
+          "t": 719,
+          "stream": "stdout",
+          "text": "Hypothèses (1) : [hyp-1] Les clients réservent surtout le soir {source non renseignée}\nBesoins déclarés, non vérifiés (1) : [need-1] Réserver une réparation sans appeler {sources : src-1}\nDécisions (1) : [dec-1:validated] Prototype : réservation en ligne {justifiée par : fact-1}\nQuestions (0) : (aucune)\n"
+        }
+      ]
+    }
+  ],
+  "privacyCheck": {
+    "ok": true
+  }
+}

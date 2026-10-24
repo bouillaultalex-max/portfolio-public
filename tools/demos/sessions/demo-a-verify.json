@@ -1,0 +1,89 @@
+{
+  "name": "demo-a-verify",
+  "recordedAt": "2026-10-24T15:10:14.765Z",
+  "jarvisCommit": "fdcd940",
+  "node": "v24.21.0",
+  "shellFunction": "jarvis() { node_modules/.bin/tsx apps/desktop/src/main.ts \"$@\"; };",
+  "briefsDirIsTemporary": true,
+  "steps": [
+    {
+      "cmd": "jarvis verify-demo; echo \"exit code: $?\"",
+      "input": "oui",
+      "exitCode": 0,
+      "durationMs": 777,
+      "chunks": [
+        {
+          "t": 746,
+          "stream": "stdout",
+          "text": "verify-demo : démonstration locale — aucune donnée réelle, aucune livraison externe, InMemoryMailClient jetable propre à cette invocation.\n"
+        },
+        {
+          "t": 749,
+          "stream": "stdout",
+          "text": "Confirmation requise — inmemory.send (execute)\nCompte : demo@example.test\nDestinataire : demo@example.test\nObjet : Démonstration verify-demo (JARVIS)\nCorps : Message synthétique local, généré par verify-demo — aucune donnée réelle.\n"
+        },
+        {
+          "t": 749,
+          "stream": "stdout",
+          "text": "Confirmer l'envoi ? [y/N] "
+        },
+        {
+          "t": 749,
+          "stream": "stdin",
+          "text": "oui"
+        },
+        {
+          "t": 753,
+          "stream": "stdout",
+          "text": "Résultat technique : executed.\nVerdict de vérification : satisfied — un enregistrement correspondant à la demande autorisée a été observé (id=sent-1).\n"
+        },
+        {
+          "t": 775,
+          "stream": "stdout",
+          "text": "exit code: 0\n"
+        }
+      ]
+    },
+    {
+      "cmd": "jarvis verify-demo; echo \"exit code: $?\"",
+      "input": "non",
+      "exitCode": 0,
+      "durationMs": 737,
+      "chunks": [
+        {
+          "t": 704,
+          "stream": "stdout",
+          "text": "verify-demo : démonstration locale — aucune donnée réelle, aucune livraison externe, InMemoryMailClient jetable propre à cette invocation.\n"
+        },
+        {
+          "t": 707,
+          "stream": "stdout",
+          "text": "Confirmation requise — inmemory.send (execute)\nCompte : demo@example.test\nDestinataire : demo@example.test\nObjet : Démonstration verify-demo (JARVIS)\nCorps : Message synthétique local, généré par verify-demo — aucune donnée réelle.\n"
+        },
+        {
+          "t": 708,
+          "stream": "stdout",
+          "text": "Confirmer l'envoi ? [y/N] "
+        },
+        {
+          "t": 708,
+          "stream": "stdin",
+          "text": "non"
+        },
+        {
+          "t": 711,
+          "stream": "stdout",
+          "text": "Confirmation refusée (ou non traitée) : zéro effet.\n"
+        },
+        {
+          "t": 734,
+          "stream": "stdout",
+          "text": "exit code: 1\n"
+        }
+      ]
+    }
+  ],
+  "privacyCheck": {
+    "ok": true
+  }
+}

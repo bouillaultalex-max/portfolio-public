@@ -1,0 +1,25 @@
+# Dépendances et build
+node_modules/
+dist/
+*.tsbuildinfo
+coverage/
+
+# Environnement local (les variables VITE_* finissent dans le bundle public)
+.env
+.env.local
+.env.*.local
+
+# Outils et système
+.vercel/
+.vscode/
+.idea/
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+*.log
+
+# Aperçu statique local, non synchronisé avec src/
+apercu-statique.html
+
+# Rendus vidéo intermédiaires des démos (les vidéos publiées sont dans public/demos/)
+tools/demos/out/

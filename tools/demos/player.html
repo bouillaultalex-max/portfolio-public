@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="node_modules/@xterm/xterm/css/xterm.css">
+<style>
+  :root { --bg:#080e18; --panel:#0f1a28; --line:#2a3d50; --teal:#67e3d4; --text:#e9eff7; --muted:#9fb1c3; --violet:#c3b4f0; --amber:#f4c97a; }
+  html,body { margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); color:var(--text); font-family:"Segoe UI", Inter, system-ui, sans-serif; }
+  .frame { position:absolute; inset:0; padding:22px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:14px; }
+  .top { display:flex; align-items:center; justify-content:space-between; height:26px; }
+  .brand { font-size:13px; font-weight:800; letter-spacing:2px; color:#78baca; text-transform:uppercase; }
+  .badge { font-size:12px; font-weight:700; color:#a5d6c4; border:1px solid #2c4a42; background:#12261f; border-radius:999px; padding:4px 12px; }
+  .caption { min-height:78px; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; background:var(--panel); padding:14px 20px; display:flex; align-items:center; gap:16px; box-sizing:border-box; }
+  .caption .chip { flex:none; font-size:13px; font-weight:800; letter-spacing:.5px; border-radius:8px; padding:6px 10px; background:#163a3a; color:var(--teal); }
+  .caption .text { font-size:23px; font-weight:650; line-height:1.3; }
+  .caption.tone-ok { border-left-color:#58c9a5 } .caption.tone-ok .chip { background:#143428; color:#8de6c4 }
+  .caption.tone-verify { border-left-color:#6fb2e6 } .caption.tone-verify .chip { background:#132a3d; color:#a9d3f2 }
+  .caption.tone-deny { border-left-color:#e58b8b } .caption.tone-deny .chip { background:#3a1a1f; color:#f3b0b0 }
+  .term { flex:1; border:1px solid var(--line); border-radius:12px; background:#060b13; overflow:hidden; display:flex; flex-direction:column; }
+  .term-bar { height:30px; display:flex; align-items:center; gap:8px; padding:0 14px; border-bottom:1px solid #1d2b3b; font-size:12px; color:#7d93a7; }
+  .term-bar i { width:10px; height:10px; border-radius:50%; background:#2a3a4c; display:inline-block; }
+  #xterm { flex:1; padding:10px 14px 6px; }
+  .foot { display:flex; justify-content:space-between; font-size:13px; color:#8095a9; height:18px; }
+  .card { position:absolute; inset:0; display:none; flex-direction:column; justify-content:center; padding:0 110px; background:radial-gradient(ellipse at 80% 30%,#14293b 0%,var(--bg) 60%); }
+  .card.on { display:flex; }
+  .card .eyebrow { font-size:15px; font-weight:800; letter-spacing:3px; color:#78baca; text-transform:uppercase; margin-bottom:18px; }
+  .card h1 { font-size:54px; line-height:1.1; margin:0 0 22px; letter-spacing:-1.5px; }
+  .card h1 span { color:var(--teal); }
+  .card p { font-size:24px; line-height:1.5; color:#c9d9e6; margin:0 0 12px; max-width:1000px; }
+  .card ul { margin:6px 0 0; padding:0; list-style:none; }
+  .card li { font-size:21px; line-height:1.45; color:#c9d9e6; margin:0 0 10px; padding-left:30px; position:relative; }
+  .card li:before { content:"—"; position:absolute; left:0; color:var(--teal); }
+  .card .note { margin-top:18px; font-size:17px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="top"><span class="brand" id="brand"></span><span class="badge" id="badge"></span></div>
+  <div class="caption" id="caption"><span class="chip" id="chip"></span><span class="text" id="captionText"></span></div>
+  <div class="term"><div class="term-bar"><i></i><i></i><i></i><span id="termTitle"></span></div><div id="xterm"></div></div>
+  <div class="foot"><span id="footLeft"></span><span id="footRight"></span></div>
+</div>
+<div class="card" id="card"></div>
+<script src="node_modules/@xterm/xterm/lib/xterm.js"></script>
+<script>
+  const term = new Terminal({ cols: 140, rows: 26, fontFamily: 'Consolas, "Cascadia Mono", monospace', fontSize: 15.2, lineHeight: 1.12,
+    theme: { background: '#060b13', foreground: '#dbe7f1', cursor: '#67e3d4', green: '#7de0c6', yellow: '#f4c97a', cyan: '#67e3d4', red: '#f3a0a0' },
+    cursorBlink: false, allowProposedApi: true, convertEol: false })
+  term.open(document.getElementById('xterm'))
+  let timeline = [], idx = 0
+  window.setup = (cfg) => {
+    for (const [id, v] of Object.entries(cfg.static)) document.getElementById(id).textContent = v
+    timeline = cfg.timeline; idx = 0
+  }
+  function setCaption(c) {
+    const el = document.getElementById('caption')
+    el.className = 'caption' + (c.tone ? ' tone-' + c.tone : '')
+    document.getElementById('chip').textContent = c.chip || ''
+    document.getElementById('chip').style.display = c.chip ? '' : 'none'
+    document.getElementById('captionText').textContent = c.text
+  }
+  function setCard(html) { const c = document.getElementById('card'); if (html) { c.innerHTML = html; c.classList.add('on') } else c.classList.remove('on') }
+  // Applique tous les événements dont l'instant est <= t, puis attend le rendu du terminal.
+  window.advanceTo = (t) => new Promise(resolve => {
+    const writes = []
+    while (idx < timeline.length && timeline[idx].t <= t) {
+      const ev = timeline[idx++]
+      if (ev.type === 'write') writes.push(ev.data)
+      else if (ev.type === 'caption') setCaption(ev)
+      else if (ev.type === 'card') setCard(ev.html)
+    }
+    if (!writes.length) return requestAnimationFrame(() => resolve())
+    term.write(writes.join(''), () => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
+  })
+</script>
+</body>
+</html>
