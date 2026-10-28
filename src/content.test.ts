@@ -47,12 +47,12 @@ test('vidéos : chaque démo filmée a ses fichiers MP4 et poster dans les deux 
   }
 })
 
-test('confidentialité : aucun lien vers le dépôt LCA-MES et aucun lien non HTTPS', () => {
+test('confidentialité : aucun lien vers le dépôt MES et aucun lien non HTTPS', () => {
   const text = JSON.stringify(cases) + JSON.stringify(copy)
   assert.doesNotMatch(text, /lca-platform/i)
-  const lca = cases.find(item => item.id === 'lca-mes')!
-  assert.equal(lca.repoUrl, undefined)
-  assert.equal(lca.statusSource, undefined)
+  const mes = cases.find(item => item.id === 'mes')!
+  assert.equal(mes.repoUrl, undefined)
+  assert.equal(mes.statusSource, undefined)
   for (const url of text.match(/https?:\/\/[^\s"']+/g) ?? []) assert.ok(url.startsWith('https://'), url)
 })
 

@@ -33,7 +33,7 @@ export type CaseStudy = {
   decisions: Decision[]
   demos: Demo[]
   status: Record<StatusKey, Record<Locale, string[]>>
-  // Absent pour LCA-MES : aucun lien vers ce dépôt n'est affiché (confidentialité).
+  // Absent pour MES : aucun lien vers ce dépôt n'est affiché (confidentialité).
   statusSource?: string
   proof: Record<Locale, string>
   limit: Record<Locale, string>
@@ -229,14 +229,14 @@ export const cases: CaseStudy[] = [
     repoUrl: 'https://github.com/bouillaultalex-max/Jarvis',
   },
   {
-    id: 'lca-mes',
+    id: 'mes',
     number: '02',
-    title: 'LCA-MES',
+    title: 'MES',
     category: { fr: 'Produit métier · Industrie', en: 'B2B Product · Manufacturing' },
     stage: { fr: 'Prototype personnel V0.9 · non déployé', en: 'Personal V0.9 prototype · not deployed' },
     description: {
-      fr: 'Une application métier conçue autour des besoins réels d’un laboratoire de production : stocks, préparation, production et traçabilité.',
-      en: 'A business application designed around the real needs of a production laboratory: inventory, preparation, production and traceability.',
+      fr: 'Un prototype de MES (Manufacturing Execution System) conçu pour centraliser les stocks, la préparation, le suivi de production et la traçabilité des lots.',
+      en: 'A MES (Manufacturing Execution System) prototype designed to centralize inventory, preparation, production tracking and batch traceability.',
     },
     highlights: {
       fr: ['Faisabilité vérifiée avant chaque lot', 'Traçabilité des lots finis', 'Testée par deux utilisateurs métier'],
@@ -247,12 +247,12 @@ export const cases: CaseStudy[] = [
       en: 'Spreadsheet-based preparation workflows make stock shortage anticipation and lot traceability harder.',
     },
     role: {
-      fr: 'J’ai cadré les besoins à partir de ma connaissance du laboratoire, défini les fonctionnalités et les règles métier, priorisé la roadmap et piloté leur implémentation avec l’assistance de Claude Code. J’ai assuré les vérifications fonctionnelles documentées et intégré les retours des deux premiers utilisateurs métier.',
-      en: 'I scoped the needs from my knowledge of the laboratory, defined the features and business rules, prioritized the roadmap and led their implementation with Claude Code’s assistance. I carried out the documented functional checks and incorporated feedback from the first two business users.',
+      fr: 'J’ai cadré les besoins à partir de mon expérience des opérations de production, défini les fonctionnalités et les règles métier, priorisé la roadmap et piloté leur implémentation avec l’assistance de Claude Code. J’ai assuré les vérifications fonctionnelles documentées et intégré les retours des deux premiers utilisateurs métier.',
+      en: 'I scoped the needs from my experience of production operations, defined the features and business rules, prioritized the roadmap and led their implementation with Claude Code’s assistance. I carried out the documented functional checks and incorporated feedback from the first two business users.',
     },
     users: [
       {
-        who: { fr: 'Responsable de laboratoire', en: 'Laboratory manager' },
+        who: { fr: 'Responsable de production', en: 'Production manager' },
         need: {
           fr: 'Préparer et lancer des lots sans mauvaise surprise de stock, et retrouver rapidement un article ou un ingrédient.',
           en: 'Prepare and launch batches without stock surprises, and quickly find an item or ingredient.',
@@ -369,7 +369,7 @@ export const copy = {
   fr: {
     meta: {
       title: 'Alexandre Bouillault — Product Builder IA',
-      description: 'Portfolio d’Alexandre Bouillault, Product Builder spécialisé dans les produits numériques et les agents IA. Découvrez JARVIS, LCA-MES et son approche produit.',
+      description: 'Portfolio d’Alexandre Bouillault, Product Builder spécialisé dans les produits numériques et les agents IA. Découvrez JARVIS, MES et son approche produit.',
     },
     skip: 'Aller au contenu', brandLabel: 'Alexandre Bouillault — accueil', navLabel: 'Navigation principale', languageLabel: 'Langue',
     nav: { projects: 'Projets', approach: 'Méthode', about: 'À propos', contact: 'Contact' },
@@ -420,13 +420,13 @@ export const copy = {
     ],
     aboutEyebrow: '03 / PARCOURS', aboutTitle: 'Le terrain d’abord. La technologie ensuite.',
     aboutP1: 'Mon parcours s’est construit en laboratoire de production, comme responsable adjoint : gestion du laboratoire, coordination d’équipe, préparation et production, au plus près des contraintes opérationnelles. J’y ai appris à partir des irritants concrets plutôt que d’une technologie à placer.',
-    aboutP2: 'J’ai engagé une reconversion vers le Product Building et je me forme avec Uncode School. Je mets cette méthode en pratique sur des projets concrets : un outil métier pour un laboratoire et un assistant IA personnel.',
+    aboutP2: 'J’ai engagé une reconversion vers le Product Building et je me forme avec Uncode School. Je mets cette méthode en pratique sur des projets concrets : un MES de gestion de production et un assistant IA personnel.',
     aboutP3: 'J’utilise Claude Code pour piloter les réalisations techniques : je cadre, je priorise, je fais implémenter et je vérifie. Les choix produit et les validations restent sous ma responsabilité.',
     pathTitle: 'Parcours en trois étapes',
     path: [
       { label: 'Gestion de laboratoire', detail: 'Responsable adjoint d’un laboratoire de production : coordination d’équipe, préparation, stocks et traçabilité.' },
       { label: 'Reconversion Product Building', detail: 'Formation Uncode School : cadrage métier, roadmap, prototypage et IA appliquée.' },
-      { label: 'Réalisations pilotées avec Claude Code', detail: 'Deux projets personnels : LCA-MES, prototype d’outil métier testé par deux utilisateurs, et JARVIS, assistant IA (voir Projets).' },
+      { label: 'Réalisations pilotées avec Claude Code', detail: 'Deux projets personnels : MES, prototype de gestion de production testé par deux utilisateurs, et JARVIS, assistant IA (voir Projets).' },
     ],
     skillsTitle: 'Compétences',
     skills: ['Cadrage métier & discovery', 'Roadmap & priorisation', 'Prototypage IA & agents', 'Automatisation de workflows', 'Pilotage de Claude Code', 'Coordination d’équipe', 'React / TypeScript (assisté par IA)'],
@@ -446,7 +446,7 @@ export const copy = {
   en: {
     meta: {
       title: 'Alexandre Bouillault — AI Product Builder',
-      description: 'Portfolio of Alexandre Bouillault, Product Builder focused on digital products and AI agents. Explore JARVIS, LCA-MES and his product approach.',
+      description: 'Portfolio of Alexandre Bouillault, Product Builder focused on digital products and AI agents. Explore JARVIS, MES and his product approach.',
     },
     skip: 'Skip to content', brandLabel: 'Alexandre Bouillault — home', navLabel: 'Primary navigation', languageLabel: 'Language',
     nav: { projects: 'Projects', approach: 'Method', about: 'About', contact: 'Contact' },
@@ -497,13 +497,13 @@ export const copy = {
     ],
     aboutEyebrow: '03 / BACKGROUND', aboutTitle: 'Business reality first. Technology second.',
     aboutP1: 'My background was built in a production laboratory, as assistant manager: running the lab, coordinating a team, preparation and production, close to operational constraints. It taught me to start from real friction, not from a technology looking for a use case.',
-    aboutP2: 'I am transitioning into Product Building and training with Uncode School. I apply this method to concrete projects: a business tool for a laboratory and a personal AI assistant.',
+    aboutP2: 'I am transitioning into Product Building and training with Uncode School. I apply this method to concrete projects: a manufacturing execution system and a personal AI assistant.',
     aboutP3: 'I use Claude Code to lead technical delivery: I scope, prioritize, have it implemented and verify. Product choices and validation remain my responsibility.',
     pathTitle: 'My path in three steps',
     path: [
       { label: 'Laboratory management', detail: 'Assistant manager of a production laboratory: team coordination, preparation, inventory and traceability.' },
       { label: 'Transition to Product Building', detail: 'Uncode School training: business scoping, roadmapping, prototyping and applied AI.' },
-      { label: 'Delivery led with Claude Code', detail: 'Two personal projects: LCA-MES, a business-tool prototype tested by two users, and JARVIS, an AI assistant (see Projects).' },
+      { label: 'Delivery led with Claude Code', detail: 'Two personal projects: MES, a production management prototype tested by two users, and JARVIS, an AI assistant (see Projects).' },
     ],
     skillsTitle: 'Skills',
     skills: ['Business scoping & discovery', 'Roadmapping & prioritization', 'AI prototyping & agents', 'Workflow automation', 'Leading Claude Code', 'Team coordination', 'React / TypeScript (AI-assisted)'],
