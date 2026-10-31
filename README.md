@@ -55,3 +55,11 @@ Les vidéos de JARVIS montrent des **commandes réellement exécutées** sur une
 ## Licence
 
 Projet personnel : contenu et identité visuelle non librement réutilisables sans permission. Les outils et dépendances conservent leurs licences propres.
+
+## CV Product Builder IA et déploiement
+
+Le CV français d’origine est conservé dans `public/cv/cv-alexandre-bouillault-product-builder-ia-fr.pdf`. Il est proposé sur les pages FR et EN ; la page EN indique « French version ».
+
+Dans Vercel, définir `VITE_CV_URL_FR=/cv/cv-alexandre-bouillault-product-builder-ia-fr.pdf` et laisser `VITE_CV_URL_EN` vide (supprimer toute ancienne valeur EN), puis reconstruire le site. Les variables VITE_ sont intégrées à la compilation. Le PDF doit être inclus dans la copie filtrée déployée ; `.env.local` reste local et hors Git. Les anciens PDF ne sont pas utilisés par cette configuration.
+
+La publication continue de passer par la copie filtrée existante ; aucune publication depuis le dépôt de travail.
