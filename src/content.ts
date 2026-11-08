@@ -28,6 +28,7 @@ export type CaseStudy = {
   highlights: Record<Locale, string[]>
   problem: Record<Locale, string>
   role: Record<Locale, string>
+  productExperiment?: { title: Localized, paragraphs: Localized[] }
   users: UserNeed[]
   usersNote?: Localized
   decisions: Decision[]
@@ -62,8 +63,29 @@ export const cases: CaseStudy[] = [
       en: 'AI assistants can produce a convincing answer without proving that the requested action actually succeeded, or that it was authorized.',
     },
     role: {
-      fr: 'J’ai cadré les besoins, défini les fonctionnalités, priorisé la roadmap et piloté leur implémentation avec l’assistance de Claude Code. Les vérifications documentées sont des tests automatisés et des essais sur données simulées : JARVIS est mon assistant personnel, il n’a pas d’utilisateurs externes.',
-      en: 'I scoped the needs, defined the features, prioritized the roadmap and led their implementation with Claude Code’s assistance. The documented checks are automated tests and trials on simulated data: JARVIS is my personal assistant and has no external users.',
+      fr: 'J’ai cadré les besoins, défini les fonctionnalités, priorisé la roadmap et piloté leur implémentation avec l’assistance de Claude Code. Les vérifications documentées combinent tests automatisés, démonstrations simulées et essais personnels en conditions réelles. JARVIS est mon assistant personnel et n’a pas d’utilisateurs externes.',
+      en: 'I scoped the needs, defined the features, prioritized the roadmap and led their implementation with Claude Code’s assistance. The documented checks combine automated tests, simulated demos and personal trials in a real setup. JARVIS is my personal assistant and has no external users.',
+    },
+    productExperiment: {
+      title: { fr: 'Tester une fiche pour reprendre une décision produit', en: 'Testing a project brief to resume product work' },
+      paragraphs: [
+        {
+          fr: 'En passant entre Codex et T3 Code, je devais retrouver la dernière décision, sa preuve et l’action suivante. Les tests réels de recherche et de lecture Obsidian avaient confirmé que les empreintes du vault restaient identiques avant et après les commandes. J’ai pris cette intégration comme premier cas pratique de ma mission Product Builder.',
+          en: 'Working across Codex and T3 Code, I needed to recover the latest decision, its evidence and the next action. Real-world tests of Obsidian search and read confirmed that vault hashes matched before and after each command. I used this integration as the first case for my Product Builder workflow.',
+        },
+        {
+          fr: 'J’ai comparé un récapitulatif dans le chat à une fiche projet minimale et choisi de tester la fiche. Mon objectif était de retrouver ces trois éléments en moins de deux minutes, avant de rouvrir l’ancien chat.',
+          en: 'I compared a chat recap with a minimal project brief and chose to test the brief. My goal was to recover those three elements in under two minutes, before reopening the old chat.',
+        },
+        {
+          fr: 'J’ai relevé trois temps : 2 min 38 s avec une relance de la commande, puis 45 s, et enfin 20 s après une pause, à partir de la fiche seule.',
+          en: 'I recorded three times: 2 min 38 s with a command retry, then 45 s, and finally 20 s after a break, using the brief alone.',
+        },
+        {
+          fr: 'Chaque essai a été chronométré une seule fois. Un lancement plus fiable et ma familiarité avec la fiche ont pu contribuer à l’écart. Sur un projet moins familier, je mesurerais aussi le nombre de messages transférés entre outils.',
+          en: 'I timed each attempt once. A more reliable launch and my familiarity with the brief may have contributed to the difference. On a less familiar project, I would also count message transfers between tools.',
+        },
+      ],
     },
     users: [
       {
@@ -222,8 +244,8 @@ export const cases: CaseStudy[] = [
       en: 'Strict TypeScript monorepo (npm workspaces): Fastify server, terminal client, LLM abstraction, connectors, email classification and project briefs. Architecture decisions (ADRs) and actual status are documented in the repository.',
     },
     limit: {
-      fr: 'Prototype personnel, sans utilisateurs externes ni mesure d’impact. Plusieurs intégrations restent simulées ou non vérifiées en conditions réelles. Il ne s’agit pas d’un assistant commercialisé.',
-      en: 'Personal prototype, with no external users and no impact measurement. Several integrations remain simulated or unverified in real conditions. This is not a commercial assistant.',
+      fr: 'Prototype personnel, sans utilisateurs externes ni mesure d’impact à grande échelle. Plusieurs intégrations restent simulées ou non vérifiées en conditions réelles. Il ne s’agit pas d’un assistant commercialisé.',
+      en: 'Personal prototype, with no external users or impact measurement at scale. Several integrations remain simulated or unverified in real conditions. This is not a commercial assistant.',
     },
     tags: ['TypeScript', 'AI Agents', 'Claude Code', 'Workflows'],
     repoUrl: 'https://github.com/bouillaultalex-max/Jarvis',

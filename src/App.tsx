@@ -159,6 +159,12 @@ function CaseStudyDialog({ item, locale, focusDemos, onClose }: { item: CaseStud
           ? <a href={item.statusSource} target="_blank" rel="noopener noreferrer">{t.statusSourceLabel} {formatDate(statusCheckedOn, locale)}<ExternalLink size={12} aria-hidden="true"/><span className="sr-only"> {t.newTab}</span></a>
           : <span>{t.statusSourceInternal} {formatDate(statusCheckedOn, locale)}</span>}</p></div>
         <div className="dialog-section"><h3>{t.decisions}</h3><ul className="decision-list">{item.decisions.map(decision => <li key={decision.text[locale]}><CircleCheck size={16} aria-hidden="true"/><span><span className="decision-category">{t.decisionCategories[decision.category]}</span>{decision.text[locale]}{decision.trace && <a className="decision-trace" href={decision.trace.url} target="_blank" rel="noopener noreferrer"><span className="sr-only">{t.traceLabel} </span>{decision.trace.label}<ExternalLink size={12} aria-hidden="true"/><span className="sr-only"> {t.newTab}</span></a>}</span></li>)}</ul></div>
+        {item.productExperiment && (
+          <section className="dialog-section" aria-labelledby="product-experiment-heading">
+            <h3 id="product-experiment-heading">{item.productExperiment.title[locale]}</h3>
+            {item.productExperiment.paragraphs.map(paragraph => <p key={paragraph.fr}>{paragraph[locale]}</p>)}
+          </section>
+        )}
         <div className="dialog-section"><h3 id="case-demos" tabIndex={-1}>{t.demosTitle}</h3><ul className="demo-list">{item.demos.map(demo => <DemoItem key={demo.title[locale]} demo={demo} locale={locale}/>)}</ul></div>
         <div className="dialog-columns"><div className="dialog-section"><h3>{t.evidence}</h3><p>{item.proof[locale]}</p></div><div className="dialog-section"><h3>{t.boundaries}</h3><p>{item.limit[locale]}</p></div></div>
         {item.repoUrl && <a className="button button-solid" href={item.repoUrl} target="_blank" rel="noopener noreferrer"><Github size={17} aria-hidden="true"/>{t.source}<ArrowUpRight size={16} aria-hidden="true"/><span className="sr-only"> {t.newTab}</span></a>}
