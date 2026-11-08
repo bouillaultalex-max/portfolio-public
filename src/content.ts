@@ -272,6 +272,23 @@ export const cases: CaseStudy[] = [
       fr: 'J’ai cadré les besoins à partir de mon expérience des opérations de production, défini les fonctionnalités et les règles métier, priorisé la roadmap et piloté leur implémentation avec l’assistance de Claude Code. J’ai assuré les vérifications fonctionnelles documentées et intégré les retours des deux premiers utilisateurs métier.',
       en: 'I scoped the needs from my experience of production operations, defined the features and business rules, prioritized the roadmap and led their implementation with Claude Code’s assistance. I carried out the documented functional checks and incorporated feedback from the first two business users.',
     },
+    productExperiment: {
+      title: { fr: 'Tester un choix de périmètre pour l’assistant MES', en: 'Testing a scope decision for the MES assistant' },
+      paragraphs: [
+        {
+          fr: 'Pour la première version, j’ai limité l’assistant IA à la consultation des données métier. Après avoir identifié les outils de lecture lors d’une inspection du code, j’ai testé le parcours sur une instance isolée, avec des données fictives et un compte en lecture seule. Le fournisseur de test fonctionnait sans service d’IA externe.',
+          en: 'For the first version, I limited the AI assistant to consulting business data. After identifying the read tools during a code review, I tested the flow on an isolated instance, with fictional data and a read-only account. The test provider ran without any external AI service.',
+        },
+        {
+          fr: 'L’outil de synthèse du tableau de bord s’est exécuté avec succès. Les instantanés triés des 29 tables métier étaient identiques avant et après l’échange. Les tables de suivi de l’assistant, l’historique de connexion et le journal des migrations étaient hors de cette comparaison. Le suivi de l’assistant a enregistré les écritures prévues : une conversation et trois messages. L’historique de connexion est resté stable pendant l’échange.',
+          en: 'The dashboard summary tool ran successfully. Sorted snapshots of the 29 business tables were identical before and after the exchange. The assistant’s tracking tables, the login history and the migration log were outside this comparison. The assistant’s tracking recorded the expected writes: one conversation and three messages. The login history remained unchanged during the exchange.',
+        },
+        {
+          fr: 'Cet essai unique couvre un outil et un compte. Le fournisseur de test a confirmé l’exécution de l’outil. L’exactitude d’une réponse en langage naturel reste à vérifier. Le prochain test comparerait les chiffres donnés par un modèle aux valeurs de référence du jeu fictif. Le choix entre un modèle local et un service hébergé déterminera si ces données doivent sortir de l’environnement de test.',
+          en: 'This single trial covers one tool and one account. The test provider confirmed that the tool ran. The accuracy of a natural-language answer remains to be verified. The next test would compare the figures given by a model with the reference values of the fictional dataset. The choice between a local model and a hosted service will determine whether this data has to leave the test environment.',
+        },
+      ],
+    },
     users: [
       {
         who: { fr: 'Responsable de production', en: 'Production manager' },
@@ -351,11 +368,13 @@ export const cases: CaseStudy[] = [
           '868 tests unitaires de l’API et 124 tests frontend réussis, exécutés le 24/10/2026. Une suite n’a pas pu s’exécuter faute de configuration locale.',
           '171 tests de bout en bout documentés au 11/08/2026, non relancés depuis (base de test requise).',
           'Testée par deux utilisateurs métier en juillet 2026 : quatre évolutions documentées en découlent, dont le blocage d’un lot en cas de stock insuffisant.',
+          'Assistant IA en lecture seule : essai unique le 08/11/2026 sur une instance isolée avec des données fictives (un outil, un compte) ; données métier comparées identiques avant et après l’échange.',
         ],
         en: [
           '868 API unit tests and 124 frontend tests passed, run on 2026-10-24. One suite could not run without local configuration.',
           '171 end-to-end tests documented on 2026-08-11, not re-run since (test database required).',
           'Tested by two business users in July 2026: four documented changes resulted, including blocking a batch when stock is insufficient.',
+          'Read-only AI assistant: single trial on 2026-11-08 on an isolated instance with fictional data (one tool, one account); compared business data identical before and after the exchange.',
         ],
       },
       planned: {
@@ -363,14 +382,14 @@ export const cases: CaseStudy[] = [
           'Aucun déploiement en production validé ; configuration Docker non testée en conditions réelles.',
           'Qualité et coûts : implémentés côté serveur, sans écran dédié.',
           'Sauvegardes automatiques testées en développement uniquement.',
-          'Assistant IA : premier essai complet non réalisé.',
+          'Assistant IA : aucun essai en atelier ; exactitude d’une réponse en langage naturel non vérifiée.',
           'Pas d’intégration continue ; compte rendu des tests utilisateurs non formalisé.',
         ],
         en: [
           'No validated production deployment; Docker setup not tested in real conditions.',
           'Quality and costing: implemented server-side, no dedicated screen.',
           'Automatic backups tested in development only.',
-          'AI assistant: first complete trial not carried out.',
+          'AI assistant: no trial in the workshop; accuracy of a natural-language answer not verified.',
           'No continuous integration; user test report not formalized.',
         ],
       },
